@@ -14,6 +14,7 @@ ver 0.2 :
 ver 0.3 :
 TODO:
  + rename "player 1" to "player" and "player 2" to "computer", because we don't have a multiplayer yet =)
+ - add function shots_func
  - add to shots code of player and computer prohibition on repeat of coordinates
  - add shots code of computer to main file, game loop (sea_battle_1)
  - add end of game: 

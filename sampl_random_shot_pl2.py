@@ -1,8 +1,9 @@
-import random
+# import random
 
 # Make fields of fleets for player 1 and player 2.
 # Ships in every fleet: x5 - 1, x4 - 1, x3 - 1, x2 - 2, x1 - 2
 # 1 var - by hand
+from xy_random_func import xy_random
 
 fleet_pl_1 = [[0, 0, 0, 0, 0, 1, 0, 0, 1, 1],
               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -46,9 +47,9 @@ def print_fields(fleet_1_name, fleet_2_name, fleet_1, fleet_2):
 
 
 # Function xy_random generate 2 number - coordinates in range(0,9)
-def xy_random():
-    randomlist_2 = [random.randint(0, 9) for i in range(2)]  # maybe list[0] == list[1]
-    return randomlist_2
+# def xy_random():
+#     randomlist_2 = [random.randint(0, 9) for i in range(2)]  # maybe list[0] == list[1]
+#     return randomlist_2
 
 
 # Game loop
@@ -58,8 +59,7 @@ while run:
     print_fields("Player 1 fleet", "Computer shots", fleet_pl_1, shots_comp)    # show Player 1 fleet and Computer shots
 
 # Player 2 / Computer make shot
-# shot_pl_1 = input("Enter player 1 shot coordinate:").split()
-    shot = input("\n Computer shot to of Player 1. Type anything or n/q - for Exit):")  # debug
+    shot = input("\n May computer shots to of Player? Type anything for Yes or n/q - for Exit):")  # debug
 
 # quit the game
     if shot == 'n' or shot == 'q':

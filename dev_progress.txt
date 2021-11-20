@@ -12,12 +12,20 @@ ver 0.2 :
 	without coordinate repeat check 
 
 ver 0.3 :
-TODO:
- + rename "player 1" to "player" and "player 2" to "computer", because we don't have a multiplayer yet =)
- - add function shots_func
+ - rename "player 1" to "player" and "player 2" to "computer", because we don't have a multiplayer yet =)
+ - write function "xy_random"
+ - write function "shots_func" with check repeat of coordinates
  - add to shots code of player and computer prohibition on repeat of coordinates
  - add shots code of computer to main file, game loop (sea_battle_1)
- - add end of game: 
+TODO:
+ + add to shots code of player and computer prohibition on repeat of coordinates
+ + add shots code of computer to main file, game loop (sea_battle_1)
+
+
+ver 0.4 :
+TODO:
+ - add counter of turns
+ - make format output in "print_fields_func"
+ - add end of game:
 	- if player shots all ships of computer -> You win!
-	- if computer shots all ships of player -> Computer win!
-						    GAME OVER
+	- if computer shots all ships of player -> Computer win! GAME OVER

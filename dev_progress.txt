@@ -1,0 +1,22 @@
+ver 0.1 :
+ - 2 fields of fleet for player 1 & player 2
+ - 2 fields of shots for player 1 & player 2
+ - coordinates of fields in number
+ - ships are in some coordinates by default
+ - shot of player 1 to player 2 fleet field
+
+
+ver 0.2 :
+ - loop of game with shot only player 1
+ - player 2(comp) shot code is in individual file. shots in random coordinat of field, 
+	without coordinate repeat check 
+
+ver 0.3 :
+TODO:
+ + rename "player 1" to "player" and "player 2" to "computer", because we don't have a multiplayer yet =)
+ - add to shots code of player and computer prohibition on repeat of coordinates
+ - add shots code of computer to main file, game loop (sea_battle_1)
+ - add end of game: 
+	- if player shots all ships of computer -> You win!
+	- if computer shots all ships of player -> Computer win!
+						    GAME OVER

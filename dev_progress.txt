@@ -5,7 +5,6 @@ ver 0.1 :
  - ships are in some coordinates by default
  - shot of player 1 to player 2 fleet field
 
-
 ver 0.2 :
  - loop of game with shot only player 1
  - player 2(comp) shot code is in individual file. shots in random coordinat of field, 
@@ -17,10 +16,6 @@ ver 0.3 :
  - write function "shots_func" with check repeat of coordinates
  - add to shots code of player and computer prohibition on repeat of coordinates
  - add shots code of computer to main file, game loop (sea_battle_1)
-TODO:
- + add to shots code of player and computer prohibition on repeat of coordinates
- + add shots code of computer to main file, game loop (sea_battle_1)
-
 
 ver 0.4 :
 TODO:
@@ -29,3 +24,4 @@ TODO:
  - add end of game:
 	- if player shots all ships of computer -> You win!
 	- if computer shots all ships of player -> Computer win! GAME OVER
+

@@ -1,14 +1,16 @@
 # Sea Battle Game
 # Made by Leblik
 #
-# Beta version 0.3 of table game Sea Buttle.
+# Beta version 0.4 of table game Sea Buttle.
 #
 # Поле игрока 1 и игрока 2 заданы изначально (10 x 10 клеток), пока что не меняются.
 # В этой версии проверить механику выстрелов, отображения, записи и
 # хранения резульатов выстрелов.
 
 # IMPORTS
+import sys
 import random
+from playsound import playsound
 # from print_fields_func import print_fields
 # from xy_random_func import xy_random
 # from print_fields_func import print_fields
@@ -85,14 +87,18 @@ def shots_func(x, y, shots_field, target_fleet, name_who_turn, target_name):
     else:
         print("Повтор координат. Введите новые.")
 
-print_fields("Player fleet", "Computer fleet", fleet_pl_1, fleet_comp)  # show players fleets
-print_fields("Player shots", "Computer shots", shots_pl_1, shots_comp)  # show players shots
+
+# print_fields("Player fleet", "Computer fleet", fleet_pl_1, fleet_comp)  # show fleets fields
+print_fields("Player shots", "Computer shots", shots_pl_1, shots_comp)  # show shots fields
 
 # GAME LOOP
 # start values
 run = True
 turn_pl = True  # Player turns first
 turn_comp = False  # Computer turns if Player miss
+# add turns counter for Player and Computer
+num_turn_pl = 0
+num_turn_comp = 0
 
 while run:
 
@@ -112,63 +118,74 @@ while run:
         shot_pl_1 = [int(i) for i in shot.split()]
         x, y = shot_pl_1
         x, y = x - 1, y - 1  # correct coordinate from human to machine, coze list[0, 1, 2 ...]
-        print("Player shot in x, y = ", x, "-", y)  # debug
+        # print("Player shot in x, y = ", x, "-", y)  # debug
 
         # shots_func(x, y, shots_pl_1, fleet_comp, "Player", "Computer")  # Player get shot
 
         if shots_pl_1[y][x] == '~':  # check repeat of coordinates Player shot
-            # TODO: add turns counter for Player and Computer
+            playsound(sys.path[1] + '\\sound\\rocket_1.mp3')  # playing rocket sound
+            num_turn_pl += 1  # add turns counter for Player and Computer
+            print("Player turns:", num_turn_pl)
             if fleet_comp[y][x] == '1':  # y - num of column, x - num of elem in string
-                print("Computers ship is hit.")
-                fleet_comp[y][x] = 'X'
-                shots_pl_1[y][x] = 'X'
+                print("\n Computers ship is hit.")
+                playsound(sys.path[1] + '\\sound\\bang_3s.mp3')  # playing rocket bang sound
+                fleet_comp[y][x] = '\x1b[1;31;48m' + 'X' + '\x1b[0m'  # colored X
+                shots_pl_1[y][x] = '\x1b[1;31;48m' + 'X' + '\x1b[0m'  # colored X
                 # score_pl += 1
             elif fleet_comp[y][x] == '0':
-                print("Player miss... Computer turn")
-                fleet_comp[y][x] = '.'
-                shots_pl_1[y][x] = '.'
+                print("\n Player miss... Computer turn")
+                playsound(sys.path[1] + '\\sound\\plop_1s.mp3')  # playing miss plop sound
+                fleet_comp[y][x] = '\x1b[1;34;48m' + 'o' + '\x1b[0m'  # colored o
+                shots_pl_1[y][x] = '\x1b[1;34;48m' + 'o' + '\x1b[0m'  # colored o
                 # next Player(Computer) turn
                 turn_pl = False
                 turn_comp = True
         else:
             print("Повтор координат. Введите новые.")
 
-        print_fields("Player fleet", "Computer fleet", fleet_pl_1, fleet_comp)  # show players fleets
-        print_fields("Player shots", "Computer shots", shots_pl_1, shots_comp)  # show players shots
+        # print_fields("Player fleet", "Computer fleet", fleet_pl_1, fleet_comp)  # show fleets fields
+        print_fields("Player shots", "Computer shots", shots_pl_1, shots_comp)  # show shots fields
 
 
 # Computer turn
     while turn_comp:
-        shot = input("\n May computer shots to of Player? Type anything for Yes or n/q - for Exit):")  # debug for Exit
+        # shot = input("\n May computer shots to of Player? Type anything for Yes or n/q - for Exit):")  # debug for Exit
 
         # quit the game
-        if shot == 'n' or shot == 'q':
-            run = False
-            print("\n", " " * 16, "Exit the game")
-            exit()
+        # if shot == 'n' or shot == 'q':
+        #     run = False
+        #     print("\n", " " * 16, "Exit the game")
+        #     exit()
 
 
         # Generate random x & y coordinates for Computer shot
         x, y = xy_random()
-        print("Computer shot in x, y = ", x + 1, y + 1)  # debug
+        # print("\n Computer shot in x y = ", x + 1, y + 1)  # debug
 
         if shots_comp[y][x] == '~':  # check repeat of coordinates Computer shot
+            num_turn_comp += 1  # add turns counter for Player and Computer
+            print("Computer turns:", num_turn_comp)
+            playsound(sys.path[1] + '\\sound\\rocket_1.mp3')  # playing rocket sound
+
+            print("\n Computer shot in x y = ", x + 1, y + 1)  # debug
             if fleet_pl_1[y][x] == '1':  # y1 - num of column, x1 - num of elem in string
-                print("Ship Player 1 is hit")
-                fleet_pl_1[y][x] = 'X'
-                shots_comp[y][x] = 'X'
+                print("\n Player's ship is hit")
+                playsound(sys.path[1] + '\\sound\\bang_3s.mp3')  # playing rocket bang sound
+                fleet_pl_1[y][x] = '\x1b[1;31;48m' + 'X' + '\x1b[0m'  # colored X
+                shots_comp[y][x] = '\x1b[1;31;48m' + 'X' + '\x1b[0m'  # colored X
             elif fleet_pl_1[y][x] == '0':
-                print("Computer miss... Player turn")
-                fleet_pl_1[y][x] = '.'
-                shots_comp[y][x] = '.'
+                print("\n Computer miss... Player turn")
+                playsound(sys.path[1] + '\\sound\\plop_1s.mp3')  # playing miss plop sound
+                fleet_pl_1[y][x] = '\x1b[1;34;48m' + 'o' + '\x1b[0m'  # colored o
+                shots_comp[y][x] = '\x1b[1;34;48m' + 'o' + '\x1b[0m'  # colored o
                 # Player start his turn
                 turn_pl = True
                 turn_comp = False
         else:
-            print("Повтор координат. Новый выстрел")
+            print("Повтор координат. Новый выстрел")  # debug
 
-        print_fields("Player fleet", "Computer fleet", fleet_pl_1, fleet_comp)  # show players fleets
-        print_fields("Player shots", "Computer shots", shots_pl_1, shots_comp)  # show players shots
+        # print_fields("Player fleet", "Computer fleet", fleet_pl_1, fleet_comp)  # show fleets fields
+        print_fields("Player shots", "Computer shots", shots_pl_1, shots_comp)  # show shots fields
 
 
 # quit()

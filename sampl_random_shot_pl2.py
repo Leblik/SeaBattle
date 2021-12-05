@@ -55,7 +55,7 @@ def print_fields(fleet_1_name, fleet_2_name, fleet_1, fleet_2):
 # Game loop
 run = True
 while run:
-    # print_fields("Player 1 fleet", "Computer fleet", fleet_pl_1, fleet_comp)    # show players fleets
+    # print_fields("Player 1 fleet", "Computer fleet", fleet_pl, fleet_comp)    # show players fleets
     print_fields("Player 1 fleet", "Computer shots", fleet_pl_1, shots_comp)    # show Player 1 fleet and Computer shots
 
 # Player 2 / Computer make shot

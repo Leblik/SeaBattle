@@ -20,10 +20,16 @@ ver 0.3 :
 ver 0.4 :
  + add counter of turns
  + add sounds of shots
-TODO:
- - make format output in "print_fields_func"
- - add counter of scores Player and Computer
- - add end of game:
+ + add end of game, scores counters:
 	- if Player shots all ships of Computer (scores == max) -> You win!
 	- if Computer shots all ships of Player (scores == max) -> Computer win! GAME OVER
+ + make all code on functions
+ + change visible fields on game-table from "Player shots" & "Computer shots" to -> "Player fleet" & "Player shots".
+TODO:
+ + make all code on functions
+ + change visible fields on game-table from "Player shots" & "Computer shots" to -> "Player fleet" & "Player shots".
+ - make function GAMEOVER
+ - make format output in "print_fields" func
+
+
 

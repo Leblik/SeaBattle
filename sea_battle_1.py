@@ -8,29 +8,30 @@
 # хранения резульатов выстрелов.
 
 # IMPORTS
-import sys
-import random
-from playsound import playsound
-# from print_fields_func import print_fields
-# from xy_random_func import xy_random
-# from print_fields_func import print_fields
+# import sys
+# import random
+from functions import print_fields
+from functions import xy_random
+from functions import shots_func
 
-print("\n  Sea Battle Game \n ver.0.3")
+print("\n  Sea Battle Game \n ver.0.3"
+      "\nTo make shot input coordinates of Computer fleet (X Y), range from 1 to 10, and then tap Enter."
+      "\nFor exit input 'q' or 'n'.")
 # Make fields of fleets for Player 1 and Computer.
 # Ships in every fleet: x5 - 1, x4 - 1, x3 - 1, x2 - 2, x1 - 2
 
 # STARTING DATA
-# 1 var - by hand
-fleet_pl_1 = [[0, 0, 0, 0, 0, 1, 0, 0, 1, 1],
-              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-              [1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
-              [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-              [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-              [0, 0, 0, 1, 1, 1, 0, 0, 1, 0],
-              [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-              [0, 1, 0, 0, 0, 1, 0, 0, 0, 0],
-              [0, 1, 0, 0, 0, 0, 0, 0, 0, 0]]
+# 1 var - by handmade fields
+fleet_pl = [[0, 0, 0, 0, 0, 1, 0, 0, 1, 1],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+            [0, 0, 0, 1, 1, 1, 0, 0, 1, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+            [0, 1, 0, 0, 0, 1, 0, 0, 0, 0],
+            [0, 1, 0, 0, 0, 0, 0, 0, 0, 0]]
 
 fleet_comp = [[0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
               [0, 0, 0, 1, 0, 0, 1, 1, 0, 0],
@@ -44,7 +45,7 @@ fleet_comp = [[0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
 # Change int elmnts to str in fleets
-fleet_pl_1 = [[str(i) for i in row] for row in fleet_pl_1]
+fleet_pl = [[str(i) for i in row] for row in fleet_pl]
 fleet_comp = [[str(i) for i in row] for row in fleet_comp]
 
 # Make fields of shots for Player 1 and Computer.
@@ -54,58 +55,72 @@ shots_comp = [['~' for i in range(10)] for row in range(10)]
 
 # FUNCTIONS
 # Function print_fields. Print 2 fields in one line
-def print_fields(fleet_1_name, fleet_2_name, fleet_1, fleet_2):
-    axis = list(range(1, 11))
-    print("\nY   ", fleet_1_name, "field", " " * 17, fleet_2_name, "field")
-    # print("v")
-    for (y, ship_1, ship_2) in zip(axis, fleet_1, fleet_2):  # print y_axis and fleets
-        print(y, "   ", ' '.join([str(elem) for elem in ship_1]), " " * 12, y, "  ",
-              ' '.join([str(elem) for elem in ship_2]))
-    x_axis = ' '.join([str(x) for x in axis])
-    print("    X", x_axis, " " * 16, x_axis)  # print x_axis
-    # TODO: make print with format
+# def print_fields(fleet_1_name, fleet_2_name, fleet_1, fleet_2, score_count_1, score_count_2):
+#     axis = list(range(1, 11))
+#     print("\nY      ", fleet_1_name, "fleet", " " * 25, fleet_2_name, "fleet")
+#     # print("v")
+#     for (y, ship_1, ship_2) in zip(axis, fleet_1, fleet_2):  # print y_axis and fleets
+#         print(y, "   ", ' '.join([str(elem) for elem in ship_1]), " " * 12, y, "  ",
+#               ' '.join([str(elem) for elem in ship_2]))
+#     x_axis = ' '.join([str(x) for x in axis])
+#     print("    X", x_axis, " " * 16, x_axis)  # print x_axis
+#     print("       ", fleet_1_name + " score:", score_count_1, " "*23 + fleet_2_name + " score:", score_count_2)
+#     print("-" * 70)
+#     # TODO: make print with format
+#
+#
+# # Function xy_random return list of 2 various random number (range(0,9)) - coordinates x,y
+# def xy_random():
+#     randomlist_2 = [random.randint(0, 9) for i in range(2)]  # maybe list[0] == list[1]
+#     return randomlist_2
+#
+#
+# # Function shots_func get shots from input coordinates Player or Computer
+# def shots_func(x, y, shots_field, fleet_target, name_who_turn, name_target, turn_count, score_count, turn_shoter):
+#     if shots_field[y][x] == '~':  # check repeat of coordinates Player shot
+#         playsound(sys.path[1] + '\\sound\\rocket_1.mp3')  # playing rocket sound
+#         turn_count += 1  # counter of turns +1
+#         print(name_who_turn + " turns:", turn_count)  # debug
+#         if fleet_target[y][x] == '1':  # y - num of column, x - num of elem in string
+#             playsound(sys.path[1] + '\\sound\\bang_3s.mp3')  # playing rocket bang sound
+#             print(name_target + " ship is hit.")
+#             fleet_target[y][x] = '\x1b[1;31;48m' + 'X' + '\x1b[0m'  # colored X
+#             shots_field[y][x] = '\x1b[1;31;48m' + 'X' + '\x1b[0m'  # colored X
+#             score_count += 1  # player score counter +1
+#             turn_shoter = True
+#         elif fleet_target[y][x] == '0':
+#             playsound(sys.path[1] + '\\sound\\plop_1s.mp3')  # playing miss plop sound
+#             print("\n", name_who_turn + " miss... ")
+#             fleet_target[y][x] = '\x1b[1;34;48m' + 'o' + '\x1b[0m'  # colored o
+#             shots_field[y][x] = '\x1b[1;34;48m' + 'o' + '\x1b[0m'  # colored o
+#             turn_shoter = False  # next Player(Computer) turn
+#     else:
+#         print("Повтор координат. Введите новые.")
+#     print("debug in shot_func:", turn_shoter, turn_count, score_count)  # debug
+#     return [turn_shoter, turn_count, score_count]  # return turn_pl/comp flag , turn counter and score counter
 
-
-# Function xy_random generate 2 number - coordinates in range(0,9)
-def xy_random():
-    randomlist_2 = [random.randint(0, 9) for i in range(2)]  # maybe list[0] == list[1]
-    return randomlist_2
-
-
-# Function shots_func get shots from input coordinates Player or Computer
-def shots_func(x, y, shots_field, target_fleet, name_who_turn, target_name):
-    if shots_field[y][x] == '~':  # check repeat of coordinates Player shot
-        if target_fleet[y][x] == '1':  # y1 - num of column, x1 - num of elem in string
-            print(target_name + " ship is hit.")
-            target_fleet[y][x] = 'X'
-            shots_field[y][x] = 'X'
-        elif target_fleet[y][x] == '0':
-            print(name_who_turn + " miss... ")
-            target_fleet[y][x] = '.'
-            shots_field[y][x] = '.'
-            # next Player(Computer) turn
-    else:
-        print("Повтор координат. Введите новые.")
-
-
-# print_fields("Player fleet", "Computer fleet", fleet_pl_1, fleet_comp)  # show fleets fields
-print_fields("Player shots", "Computer shots", shots_pl_1, shots_comp)  # show shots fields
 
 # GAME LOOP
 # start values
 run = True
 turn_pl = True  # Player turns first
 turn_comp = False  # Computer turns if Player miss
-# add turns counter for Player and Computer
+# add turns counters for Player and Computer
 num_turn_pl = 0
 num_turn_comp = 0
+# add score counters - GAMEOVER condition
+score_pl = 0
+score_comp = 0
+
+print_fields("Player", "Computer", fleet_pl, shots_pl_1, score_pl, score_comp)  # show Players fleet and shots fields
+
 
 while run:
 
 # Player turn
     while turn_pl:
         # shot player - input coordinates
-        shot = input("\n Enter Player shot coordinate X Y to Computer:")
+        shot = input("\n Enter coordinate X Y (1-10) to make shot:")
 
         if shot == 'n' or shot == 'q': # quit the game
             run = False
@@ -114,79 +129,55 @@ while run:
         elif shot == '':  # debug cheat: if Player enter null string -> turn go to the Computer
             turn_pl = False
             turn_comp = True
+        elif shot == 'win':  # debug cheat: if Player enter 'win' -> Player WIN! GAMEOVER
+            score_pl = 18
+            # turn_pl = False
+            # exit()
+        else:
+            xy_pl = [int(i) for i in shot.split()]
+            x, y = xy_pl
+            x, y = x - 1, y - 1  # correct coordinate from human to machine, coze list[0, 1, 2 ...]
 
-        shot_pl_1 = [int(i) for i in shot.split()]
-        x, y = shot_pl_1
-        x, y = x - 1, y - 1  # correct coordinate from human to machine, coze list[0, 1, 2 ...]
         # print("Player shot in x, y = ", x, "-", y)  # debug
 
-        # shots_func(x, y, shots_pl_1, fleet_comp, "Player", "Computer")  # Player get shot
+        player_shot = shots_func(x, y, shots_pl_1, fleet_comp, "Player", "Computer", num_turn_pl, score_pl, turn_pl)  # Player get shot
+        print(x, y, "Player -> Computer", player_shot)  # debug
+        turn_pl, num_turn_pl, score_pl = player_shot
 
-        if shots_pl_1[y][x] == '~':  # check repeat of coordinates Player shot
-            playsound(sys.path[1] + '\\sound\\rocket_1.mp3')  # playing rocket sound
-            num_turn_pl += 1  # add turns counter for Player and Computer
-            print("Player turns:", num_turn_pl)
-            if fleet_comp[y][x] == '1':  # y - num of column, x - num of elem in string
-                print("\n Computers ship is hit.")
-                playsound(sys.path[1] + '\\sound\\bang_3s.mp3')  # playing rocket bang sound
-                fleet_comp[y][x] = '\x1b[1;31;48m' + 'X' + '\x1b[0m'  # colored X
-                shots_pl_1[y][x] = '\x1b[1;31;48m' + 'X' + '\x1b[0m'  # colored X
-                # score_pl += 1
-            elif fleet_comp[y][x] == '0':
-                print("\n Player miss... Computer turn")
-                playsound(sys.path[1] + '\\sound\\plop_1s.mp3')  # playing miss plop sound
-                fleet_comp[y][x] = '\x1b[1;34;48m' + 'o' + '\x1b[0m'  # colored o
-                shots_pl_1[y][x] = '\x1b[1;34;48m' + 'o' + '\x1b[0m'  # colored o
-                # next Player(Computer) turn
-                turn_pl = False
-                turn_comp = True
-        else:
-            print("Повтор координат. Введите новые.")
+        # GAMEOVER - Player WIN # TODO: make function GAMEOVER
+        if score_pl == 18:
+            print("You WIN!")
+            run = False
+            exit()
 
-        # print_fields("Player fleet", "Computer fleet", fleet_pl_1, fleet_comp)  # show fleets fields
-        print_fields("Player shots", "Computer shots", shots_pl_1, shots_comp)  # show shots fields
+        print_fields("Player", "Computer", fleet_pl, shots_pl_1, score_pl, score_comp)  # show Players fleet and shots fields
+
+        if turn_pl == False:
+            turn_comp = True
+
 
 
 # Computer turn
     while turn_comp:
-        # shot = input("\n May computer shots to of Player? Type anything for Yes or n/q - for Exit):")  # debug for Exit
-
-        # quit the game
-        # if shot == 'n' or shot == 'q':
-        #     run = False
-        #     print("\n", " " * 16, "Exit the game")
-        #     exit()
-
 
         # Generate random x & y coordinates for Computer shot
         x, y = xy_random()
         # print("\n Computer shot in x y = ", x + 1, y + 1)  # debug
 
-        if shots_comp[y][x] == '~':  # check repeat of coordinates Computer shot
-            num_turn_comp += 1  # add turns counter for Player and Computer
-            print("Computer turns:", num_turn_comp)
-            playsound(sys.path[1] + '\\sound\\rocket_1.mp3')  # playing rocket sound
+        comp_shot = shots_func(x, y, shots_comp, fleet_pl, "Computer", "Player", num_turn_comp, score_comp,
+                               turn_comp)  # Computer get shot
+        print(x, y, "Player -> Computer", comp_shot)  # debug
+        turn_comp, num_turn_comp, score_comp = comp_shot
 
-            print("\n Computer shot in x y = ", x + 1, y + 1)  # debug
-            if fleet_pl_1[y][x] == '1':  # y1 - num of column, x1 - num of elem in string
-                print("\n Player's ship is hit")
-                playsound(sys.path[1] + '\\sound\\bang_3s.mp3')  # playing rocket bang sound
-                fleet_pl_1[y][x] = '\x1b[1;31;48m' + 'X' + '\x1b[0m'  # colored X
-                shots_comp[y][x] = '\x1b[1;31;48m' + 'X' + '\x1b[0m'  # colored X
-            elif fleet_pl_1[y][x] == '0':
-                print("\n Computer miss... Player turn")
-                playsound(sys.path[1] + '\\sound\\plop_1s.mp3')  # playing miss plop sound
-                fleet_pl_1[y][x] = '\x1b[1;34;48m' + 'o' + '\x1b[0m'  # colored o
-                shots_comp[y][x] = '\x1b[1;34;48m' + 'o' + '\x1b[0m'  # colored o
-                # Player start his turn
-                turn_pl = True
-                turn_comp = False
-        else:
-            print("Повтор координат. Новый выстрел")  # debug
+        print_fields("Player", "Computer", fleet_pl, shots_pl_1, score_pl, score_comp)  # show Players fleet and shots fields
 
-        # print_fields("Player fleet", "Computer fleet", fleet_pl_1, fleet_comp)  # show fleets fields
-        print_fields("Player shots", "Computer shots", shots_pl_1, shots_comp)  # show shots fields
+        if turn_comp == False:
+            turn_pl = True
 
-
+        # GAMEOVER - Computer WIN
+        if score_comp == 18:
+            print("         GAME OVER \n      Computer WIN!")
+            run = False
+            exit()
 # quit()
 # exit()

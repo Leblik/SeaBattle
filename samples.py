@@ -63,7 +63,7 @@ def print_format_table():
 
 
 
-# fleet_pl_1 = [[0, 0, 0, 0, 0, 1, 0, 0, 1, 1],
+# fleet_pl = [[0, 0, 0, 0, 0, 1, 0, 0, 1, 1],
 #               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 #               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 #               [1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
@@ -86,7 +86,7 @@ def print_format_table():
 #               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 #
 # # Make int elmnts to str in fleets
-# fleet_pl_1 = [[str(i) for i in row] for row in fleet_pl_1]
+# fleet_pl = [[str(i) for i in row] for row in fleet_pl]
 # fleet_pl_2 = [[str(i) for i in row] for row in fleet_pl_2]
 #
 #
@@ -97,7 +97,7 @@ def print_format_table():
 #         print(' '.join([str(elem) for elem in ship_1]), " " * 10, ' '.join([str(elem) for elem in ship_2]))
 #
 #
-# # print_fleets(fleet_pl_1, fleet_comp)  # call func
+# # print_fleets(fleet_pl, fleet_comp)  # call func
 #
 #
 # # Make fields of shots for player 1 and player 2.
@@ -133,7 +133,7 @@ def print_format_table():
 # print("Содержится x ='", x,"' в A? - ", x in A)
 
 # -------------------------------------------------------------
-# fleet_pl_1 = [[0, 0, 0, 0, 0, 1, 0, 0, 1, 1],
+# fleet_pl = [[0, 0, 0, 0, 0, 1, 0, 0, 1, 1],
 #               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 #               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 #               [1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
@@ -144,14 +144,14 @@ def print_format_table():
 #               [0, 1, 0, 0, 0, 1, 0, 0, 0, 0],
 #               [0, 1, 0, 0, 0, 0, 0, 0, 0, 0]]
 # # Make int elmnts to str
-# fleet_pl_1 = [[str(i) for i in row] for row in fleet_pl_1]
+# fleet_pl = [[str(i) for i in row] for row in fleet_pl]
 #
 # # fleet_pl_1_str = [[str(i) for j in range(m)] for i in range(n)]
-# print(fleet_pl_1)  # debug
+# print(fleet_pl)  # debug
 #
 # Print 2 fleets in 1 line
 # print("\n  Player 1 fleet", " "*15,"Player 2 fleet")
-# for (ship_1, ship_2) in zip(fleet_pl_1, fleet_comp):
+# for (ship_1, ship_2) in zip(fleet_pl, fleet_comp):
 #     #print ("f: ", f ,"; b: ", b)
 #     print(' '.join([str(elem) for elem in ship_1]), " "*10, ' '.join([str(elem) for elem in ship_2]))
 #

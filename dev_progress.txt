@@ -26,10 +26,9 @@ ver 0.4 :
  + make all code on functions
  + change visible fields on game-table from "Player shots" & "Computer shots" to -> "Player fleet" & "Player shots".
 TODO:
- + make all code on functions
- + change visible fields on game-table from "Player shots" & "Computer shots" to -> "Player fleet" & "Player shots".
  - make function GAMEOVER
  - make format output in "print_fields" func
+ - change elements in Player fleet: [1 1 0 0] -> [A A ~ ~]
 
 
 

@@ -10,9 +10,9 @@
 # IMPORTS
 # import sys
 # import random
-from functions import print_fields
-from functions import xy_random
-from functions import shots_func
+from all_func import print_fields
+from all_func import xy_random
+from all_func import shots_func
 
 print("\n  Sea Battle Game \n ver.0.3"
       "\nTo make shot input coordinates of Computer fleet (X Y), range from 1 to 10, and then tap Enter."
@@ -99,6 +99,18 @@ shots_comp = [['~' for i in range(10)] for row in range(10)]
 #     print("debug in shot_func:", turn_shoter, turn_count, score_count)  # debug
 #     return [turn_shoter, turn_count, score_count]  # return turn_pl/comp flag , turn counter and score counter
 
+# Function gameover check scores and return flag end of game
+def gameover(score_pl, score_comp):
+    if score_pl == 18:
+        print("You WIN!")
+        return False
+    elif score_comp == 18:
+        print("         GAME OVER \n      Computer WIN!")
+        return False
+    else:
+        return True
+
+
 
 # GAME LOOP
 # start values
@@ -123,38 +135,54 @@ while run:
         shot = input("\n Enter coordinate X Y (1-10) to make shot:")
 
         if shot == 'n' or shot == 'q': # quit the game
-            run = False
             print("\n", " " * 16, "Exit the game")
-            exit()
+            turn_pl = False
+            run = False
+            # exit()
+            break
         elif shot == '':  # debug cheat: if Player enter null string -> turn go to the Computer
             turn_pl = False
             turn_comp = True
         elif shot == 'win':  # debug cheat: if Player enter 'win' -> Player WIN! GAMEOVER
             score_pl = 18
             # turn_pl = False
+            # turn_comp = False
+            # run = False
+            # break
             # exit()
         else:
             xy_pl = [int(i) for i in shot.split()]
             x, y = xy_pl
             x, y = x - 1, y - 1  # correct coordinate from human to machine, coze list[0, 1, 2 ...]
 
+        run = gameover(score_pl, score_comp)  # check scores for GAMEOVER func
+        # turn_pl, run = gameover(score_pl, score_comp)  # check scores for GAMEOVER
+        if turn_pl == False and run == True:
+            turn_comp = True
+
+        # turn_pl =  gameover(score_pl, score_comp)  # check scores for GAMEOVER
         # print("Player shot in x, y = ", x, "-", y)  # debug
 
-        player_shot = shots_func(x, y, shots_pl_1, fleet_comp, "Player", "Computer", num_turn_pl, score_pl, turn_pl)  # Player get shot
+        # Player get shot
+        player_shot = shots_func(x, y, shots_pl_1, fleet_comp, "Player", "Computer", num_turn_pl, score_pl, turn_pl)
         print(x, y, "Player -> Computer", player_shot)  # debug
-        turn_pl, num_turn_pl, score_pl = player_shot
+        turn_pl, num_turn_pl, score_pl = player_shot  # return result of shot
 
-        # GAMEOVER - Player WIN # TODO: make function GAMEOVER
-        if score_pl == 18:
-            print("You WIN!")
-            run = False
-            exit()
+
 
         print_fields("Player", "Computer", fleet_pl, shots_pl_1, score_pl, score_comp)  # show Players fleet and shots fields
 
-        if turn_pl == False:
-            turn_comp = True
 
+# GAMEOVER - Player WIN # TODO: +make function GAMEOVER
+        # if score_pl == 18:
+        #     print("You WIN!")
+        #     run = False
+        #     exit()
+
+        # run = gameover(score_pl, score_comp)  # check scores for GAMEOVER func
+        # # turn_pl, run = gameover(score_pl, score_comp)  # check scores for GAMEOVER
+        if turn_pl == False and run == True:
+            turn_comp = True
 
 
 # Computer turn
@@ -164,6 +192,8 @@ while run:
         x, y = xy_random()
         # print("\n Computer shot in x y = ", x + 1, y + 1)  # debug
 
+        run = gameover(score_pl, score_comp)  # check scores for GAMEOVER  TODO: +make function GAMEOVER
+
         comp_shot = shots_func(x, y, shots_comp, fleet_pl, "Computer", "Player", num_turn_comp, score_comp,
                                turn_comp)  # Computer get shot
         print(x, y, "Player -> Computer", comp_shot)  # debug
@@ -171,13 +201,17 @@ while run:
 
         print_fields("Player", "Computer", fleet_pl, shots_pl_1, score_pl, score_comp)  # show Players fleet and shots fields
 
-        if turn_comp == False:
-            turn_pl = True
+        # if turn_comp == False:
+        #     turn_pl = True
+
+        run = gameover(score_pl, score_comp)  # check scores for GAMEOVER TODO: +make function GAMEOVER
 
         # GAMEOVER - Computer WIN
-        if score_comp == 18:
-            print("         GAME OVER \n      Computer WIN!")
-            run = False
-            exit()
+        # if score_comp == 18:
+        #     print("         GAME OVER \n      Computer WIN!")
+        #     run = False
+        #     exit()
+        if turn_comp == False and run == True:
+            turn_pl = True
 # quit()
-# exit()
+exit()

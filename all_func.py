@@ -48,3 +48,20 @@ def shots_func(x, y, shots_field, fleet_target, name_who_turn, name_target, turn
     print("debug in shot_func:", turn_shoter, turn_count, score_count)  # debug
     return [turn_shoter, turn_count, score_count]  # return turn_pl/comp flag , turn counter and score counter
 
+# Function "gameover" check scores and return flag for end of game
+def gameover(score_pl, score_comp):
+    if score_pl == 18:
+        print("          You WIN!")
+        # return False
+        exit()
+        return False
+    elif score_comp == 18:
+        print("         GAME OVER \n      Computer WIN!")
+        exit()
+        return False
+    else:
+        return True
+
+
+# Example:
+# run = gameover(score_pl, score_comp)  # check scores for GAMEOVER

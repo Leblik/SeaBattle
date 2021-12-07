@@ -103,9 +103,12 @@ shots_comp = [['~' for i in range(10)] for row in range(10)]
 def gameover(score_pl, score_comp):
     if score_pl == 18:
         print("You WIN!")
+        # return False
+        exit()
         return False
     elif score_comp == 18:
         print("         GAME OVER \n      Computer WIN!")
+        exit()
         return False
     else:
         return True
@@ -130,7 +133,7 @@ print_fields("Player", "Computer", fleet_pl, shots_pl_1, score_pl, score_comp)  
 while run:
 
 # Player turn
-    while turn_pl:
+    while turn_pl and run:
         # shot player - input coordinates
         shot = input("\n Enter coordinate X Y (1-10) to make shot:")
 

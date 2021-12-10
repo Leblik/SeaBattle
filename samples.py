@@ -1,7 +1,9 @@
 # SAMPLES
-import sys
+
+from all_func import *
 # import required module
-from playsound import playsound
+# import sys
+# from playsound import playsound
 print("\nSAMPLES")
 # Play sounds ____________________________________________________________________________
 print("Project folder is", sys.path[1])  # Print current folder
@@ -13,8 +15,8 @@ print("Project folder is", sys.path[1])  # Print current folder
 
 # for playing note.mp3 file
 # playsound('E:/CODING/Python/Projects/SeaBattle/bang_2.mp3')
-playsound(sys.path[1] + '\\sound\\bang_2s.mp3')  # SUCCESS !!! playing rocket shot
-print('playing sound using  playsound')
+# playsound(sys.path[1] + '\\sound\\bang_2s.mp3')  # SUCCESS !!! playing rocket shot
+# print('playing sound using  playsound')
 # ________________________________________________________________________________________
 
 
@@ -29,33 +31,33 @@ print('playing sound using  playsound')
 # print('back to normal now')
 
 # ver 2
-print('\x1b[6;30;42m' + 'Success!' + '\x1b[0m')
-print('\x1b[6;31;42m' + 'Success!' + '\x1b[0m')
-print("Bla bla bla")
-print('\x1b[1;31;47m' + 'Success!' + '\x1b[0m')
-print('\x1b[1;31;48m' + 'Success!' + '\x1b[0m')
-print('\x1b[1;31;2m' + 'Success!' + '\x1b[0m')
-"""
-print('\x1b[style;string color;background-m' + 'Some string' + '\x1b[0m')
-style = 0 - 8 
-string color = 30 - 37
-background = 40 - 48
- 
-"""
-
-
-def print_format_table():
-    """
-    prints table of formatted text format options
-    """
-    for style in range(10):
-        for fg in range(30, 38):
-            s1 = ''
-            for bg in range(40, 49):
-                format = ';'.join([str(style), str(fg), str(bg)])
-                s1 += '\x1b[%sm %s \x1b[0m' % (format, format)
-            print(s1)
-        print('\n')
+# print('\x1b[6;30;42m' + 'Success!' + '\x1b[0m')
+# print('\x1b[6;31;42m' + 'Success!' + '\x1b[0m')
+# print("Bla bla bla")
+# print('\x1b[1;31;47m' + 'Success!' + '\x1b[0m')
+# print('\x1b[1;31;48m' + 'Success!' + '\x1b[0m')
+# print('\x1b[1;31;2m' + 'Success!' + '\x1b[0m')
+# """
+# print('\x1b[style;string color;background-m' + 'Some string' + '\x1b[0m')
+# style = 0 - 8
+# string color = 30 - 37
+# background = 40 - 48
+#
+# """
+#
+#
+# def print_format_table():
+#     """
+#     prints table of formatted text format options
+#     """
+#     for style in range(10):
+#         for fg in range(30, 38):
+#             s1 = ''
+#             for bg in range(40, 49):
+#                 format = ';'.join([str(style), str(fg), str(bg)])
+#                 s1 += '\x1b[%sm %s \x1b[0m' % (format, format)
+#             print(s1)
+#         print('\n')
 
 
 # print_format_table()
@@ -63,32 +65,46 @@ def print_format_table():
 
 
 
-# fleet_pl = [[0, 0, 0, 0, 0, 1, 0, 0, 1, 1],
-#               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#               [1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
-#               [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-#               [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-#               [0, 0, 0, 1, 1, 1, 0, 0, 1, 0],
-#               [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-#               [0, 1, 0, 0, 0, 1, 0, 0, 0, 0],
-#               [0, 1, 0, 0, 0, 0, 0, 0, 0, 0]]
-#
-# fleet_pl_2 = [[0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-#               [0, 0, 0, 1, 0, 0, 1, 1, 0, 0],
-#               [0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-#               [0, 1, 0, 1, 0, 0, 0, 0, 0, 0],
-#               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#               [0, 0, 0, 0, 0, 0, 1, 0, 1, 0],
-#               [0, 0, 0, 0, 0, 0, 1, 0, 1, 0],
-#               [1, 1, 1, 1, 1, 0, 1, 0, 0, 0],
-#               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-#               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-#
-# # Make int elmnts to str in fleets
-# fleet_pl = [[str(i) for i in row] for row in fleet_pl]
-# fleet_pl_2 = [[str(i) for i in row] for row in fleet_pl_2]
-#
+fleet_pl = [[0, 0, 0, 0, 0, 1, 0, 0, 1, 1],
+              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+              [1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+              [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+              [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+              [0, 0, 0, 1, 1, 1, 0, 0, 1, 0],
+              [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+              [0, 1, 0, 0, 0, 1, 0, 0, 0, 0],
+              [0, 1, 0, 0, 0, 0, 0, 0, 0, 0]]
+
+fleet_pl_2 = [[0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+              [0, 0, 0, 1, 0, 0, 1, 1, 0, 0],
+              [0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+              [0, 1, 0, 1, 0, 0, 0, 0, 0, 0],
+              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+              [0, 0, 0, 0, 0, 0, 1, 0, 1, 0],
+              [0, 0, 0, 0, 0, 0, 1, 0, 1, 0],
+              [1, 1, 1, 1, 1, 0, 1, 0, 0, 0],
+              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+              [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+
+# Make int elmnts to str in fleets
+fleet_pl = [[str(i) for i in row] for row in fleet_pl]
+fleet_pl_2 = [[str(i) for i in row] for row in fleet_pl_2]
+
+# Make fields of shots for Player 1 and Computer.
+shots_pl_1 = [['~' for i in range(10)] for row in range(10)]
+shots_comp = [['~' for i in range(10)] for row in range(10)]
+
+score_pl = 0
+score_comp = 0
+print_fields_2("fleet_1_name", "fleet_2_name", fleet_pl, shots_pl_1, score_pl, score_comp)
+
+print('\x1b[1;34;48m'+'Y X'+'\x1b[0m')
+print('\033[1;36;48m'+'Y X'+'\033[0m')
+
+print_fields("fleet_1_name", "fleet_2_name", fleet_pl, shots_pl_1, score_pl, score_comp)
+
+
 #
 # # Function print_fleets
 # def print_fleets(fleet_1_name, fleet_2_name, fleet_1, fleet_2):
@@ -203,3 +219,13 @@ def print_format_table():
 #
 # x, y = xy_random()
 # print(x, y)
+
+# Форматированный вывод
+# var 1.
+# for i in range(10):
+#     print('%-12s%-12s' % (10 ** i, 20 ** i))
+#
+# # var 2
+# for i in range(10):
+#     print('{:10}{:15}'.format(10 ** i, 20 ** i))
+

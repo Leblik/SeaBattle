@@ -26,8 +26,10 @@ ver 0.4 :
  - make all code on functions
  - change visible fields on game-table from "Player shots" & "Computer shots" to -> "Player fleet" & "Player shots".
  - make function GAMEOVER
+ + complete + make format output like table in "print_fields_2" func
+ + add colored of shot_field
+ + add colored char "X" & "o" in shots_func, with debug
 TODO:
- - make format output like table in "print_fields_2" func
  - change elements in Player fleet: [1 1 0 0] -> [A A ~ ~]
 
 

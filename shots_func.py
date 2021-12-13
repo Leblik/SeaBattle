@@ -29,7 +29,7 @@ def shots_func(x, y, shots_field, fleet_target, name_who_turn, name_target, turn
 
 
 # Example:
-# player_shot = shots_func(x, y, shots_pl_1, fleet_comp, "Player", "Computer", num_turn_pl, score_pl, turn_pl)  # Player get shot
+# player_shot = shots_func(x, y, shots_pl, fleet_comp, "Player", "Computer", num_turn_pl, score_pl, turn_pl)  # Player get shot
 #         print(x, y, "Player -> Computer", player_shot)  # debug
 #         turn_pl, num_turn_pl, score_pl = player_shot
 #

@@ -146,7 +146,6 @@ def shots_func_3(x, y, shots_field, fleet_target, name_who_turn, name_target, tu
 def gameover(score_pl, score_comp):
     if score_pl == 18:
         print("          You WIN!")
-        # return False
         exit()
         return False
     elif score_comp == 18:

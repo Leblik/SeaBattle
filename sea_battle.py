@@ -49,9 +49,9 @@ fleet_pl = [[str(i) for i in row] for row in fleet_pl]
 fleet_comp = [[str(i) for i in row] for row in fleet_comp]
 
 # Make fields of shots for Player 1 and Computer.
-# shots_pl_1 = [['~' for i in range(10)] for row in range(10)]
+# shots_pl = [['~' for i in range(10)] for row in range(10)]
 # shots_comp = [['~' for i in range(10)] for row in range(10)]
-shots_pl_1 = [[Fore.BLUE + '~' + Fore.RESET for i in range(10)] for row in range(10)]  # add colored of field
+shots_pl = [[Fore.BLUE + '~' + Fore.RESET for i in range(10)] for row in range(10)]  # add colored of field
 shots_comp = [[Fore.BLUE + '~' + Fore.RESET for i in range(10)] for row in range(10)]  # add colored of field
 
 
@@ -67,7 +67,7 @@ num_turn_comp = 0
 score_pl = 0
 score_comp = 0
 
-print_fields_2("Player", "Computer", fleet_pl, shots_pl_1, score_pl, score_comp)  # show Players fleet and shots fields
+print_fields_2("Player", "Computer", fleet_pl, shots_pl, score_pl, score_comp)  # show Players fleet and shots fields
 
 
 while run:
@@ -95,16 +95,15 @@ while run:
             x, y = xy_pl
             x, y = x - 1, y - 1  # correct coordinate from human to machine, coze list[0, 1, 2 ...]
 
-        # run = gameover(score_pl, score_comp)  # check scores for GAMEOVER func
         if turn_pl == False and run == True:
             turn_comp = True
 
         # Player get shot
-        player_shot = shots_func_3(x, y, shots_pl_1, fleet_comp, "Player", "Computer", num_turn_pl, score_pl, turn_pl)
+        player_shot = shots_func_3(x, y, shots_pl, fleet_comp, "Player", "Computer", num_turn_pl, score_pl, turn_pl)
         print(x, y, "Player -> Computer", player_shot)  # debug
         turn_pl, num_turn_pl, score_pl = player_shot  # return result values of Player shot
         # Output results of shot
-        print_fields_2("Player", "Computer", fleet_pl, shots_pl_1, score_pl, score_comp)  # show Players fleet and shots fields
+        print_fields_2("Player", "Computer", fleet_pl, shots_pl, score_pl, score_comp)  # show Players fleet and shots fields
 
         run = gameover(score_pl, score_comp)  # check scores for GAMEOVER func
 
@@ -122,7 +121,7 @@ while run:
         print(x, y, "Player -> Computer", comp_shot)  # debug
         turn_comp, num_turn_comp, score_comp = comp_shot  # return result values of Computer shot
 
-        print_fields_2("Player", "Computer", fleet_pl, shots_pl_1, score_pl, score_comp)  # show Players fleet and shots fields
+        print_fields_2("Player", "Computer", fleet_pl, shots_pl, score_pl, score_comp)  # show Players fleet and shots fields
 
         run = gameover(score_pl, score_comp)  # check scores for GAMEOVER
 

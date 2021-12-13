@@ -16,11 +16,11 @@ def print_fields(fleet_1_name, fleet_2_name, fleet_1, fleet_2, score_count_1, sc
 
 
 # Make fields of shots for player 1 and player 2.
-# shots_pl_1 = [['~' for i in range(10)] for row in range(10)]
+# shots_pl = [['~' for i in range(10)] for row in range(10)]
 # shots_pl_2 = [['~' for i in range(10)] for row in range(10)]
 
 # Example:
-# print_fields("Player 1 shots", "Player 2 shots", shots_pl_1, shots_pl_2)
+# print_fields("Player 1 shots", "Player 2 shots", shots_pl, shots_pl_2)
 
 
 # Перебираем элементы списка циклом for в столбик

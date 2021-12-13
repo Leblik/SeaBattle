@@ -26,11 +26,25 @@ ver 0.4 :
  - make all code on functions
  - change visible fields on game-table from "Player shots" & "Computer shots" to -> "Player fleet" & "Player shots".
  - make function GAMEOVER
- + complete + make format output like table in "print_fields_2" func
+ + make format output like table in "print_fields_2" func
  + add colored of shot_field
  + add colored char "X" & "o" in shots_func, with debug
 TODO:
- - change elements in Player fleet: [1 1 0 0] -> [A A ~ ~]
+ - change elements in Player field "fleet_pl": [1 1 0 0] -> [A A ~ ~]
 
 
+ver 0.5 :
+ -
+
+ver 1.0 :
+ - change axis X to range(a b c ... j) and format of shot coordinate as: a5, b7, f2 ...
+ - add ability that player can locate ships on the field as he wants
+ - add some ship location maps of computer in file, and random upload they from it in start of the game
+
+ver 1.1 :
+ - add ability of random locate computer and player ships
+ver 1.2 :
+ - change computer shots algorithm from jast random to AI:
+        - random shot;
+        - if hit the target -> find target nearby.
 

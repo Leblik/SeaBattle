@@ -111,7 +111,7 @@ print(Back.GREEN + 'and with a green background' + Style.RESET_ALL)
 print(f'{Fore.BLUE}and some green text{Style.RESET_ALL}')
 
 # colored field element
-print("Colored shots_pl_1[4][1] = X (RED) & fleet_pl[1][2] = o (YELLOW)")
+print("Colored shots_pl[4][1] = X (RED) & fleet_pl[1][2] = o (YELLOW)")
 shots_pl_1[0][3] = f"{Fore.RED}X{Style.RESET_ALL}"
 fleet_pl[1][0] = f"{Fore.YELLOW}o{Style.RESET_ALL}"
 print(shots_pl_1[0][3], fleet_pl[1][0])
@@ -137,9 +137,9 @@ print_fields_2("fleet_1_name", "fleet_2_name", fleet_pl, shots_pl_1, score_pl, s
 #
 #
 # # Make fields of shots for player 1 and player 2.
-# shots_pl_1 = [['~' for i in range(10)] for row in range(10)]
+# shots_pl = [['~' for i in range(10)] for row in range(10)]
 # shots_pl_2 = [['~' for i in range(10)] for row in range(10)]
-# print_fleets("Player 1", "Player 2", shots_pl_1, shots_pl_2)    # show shot result
+# print_fleets("Player 1", "Player 2", shots_pl, shots_pl_2)    # show shot result
 
 # Player 1 make shot
 # var 1
@@ -154,7 +154,7 @@ print_fields_2("fleet_1_name", "fleet_2_name", fleet_pl, shots_pl_1, score_pl, s
 # x1, y1 = (int(i) for i in input("\n Введите координаты x y через пробел:") if i != ' ')  # только пробел
 # x1, y1 = (int(i) for i in input("\n Введите координаты x y через пробел ,;-:") if i not in list(', ;-'))  # несколько вариантов разделителей
 # print(x1, y1)   # debug
-# print_fleets("Player 1", "Player 2", shots_pl_1, shots_comp)
+# print_fleets("Player 1", "Player 2", shots_pl, shots_comp)
 
 # var 3
 # import re

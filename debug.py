@@ -71,10 +71,10 @@ print(f'{"10": >2} {" ".join(fleet_pl[1]): >23s} {"10": >23s} {" ".join(shots_pl
 
 
 # get colored
-print("Colored shots_pl_1[4][1] = X (RED) & fleet_pl[1][2] = o (YELLOW)")
+print("Colored shots_pl[4][1] = X (RED) & fleet_pl[1][2] = o (YELLOW)")
 shots_pl_1[0][3] = f'{Fore.RED}X{Style.RESET_ALL}'
 fleet_pl[1][0] = f'{Fore.YELLOW}o{Style.RESET_ALL}'
-# shots_pl_1[0][3] = "X"
+# shots_pl[0][3] = "X"
 # fleet_pl[1][0] = "o"
 print(shots_pl_1[0][3], fleet_pl[1][0])
 
@@ -85,7 +85,7 @@ print_fields("fleet_1_name", "fleet_2_name", fleet_pl, shots_pl_1, score_pl, sco
 print("print_fields_2")  # debug
 print_fields_2("fleet_1_name", "fleet_2_name", fleet_pl, shots_pl_1, score_pl, score_comp)  # debug
 
-# BUG: have shift to left from 1st elem in printing of shots_pl_1
+# BUG: have shift to left from 1st elem in printing of shots_pl
 print(shots_pl_1[0])
 print(" ".join(shots_pl_1[0]))
 print(fleet_pl[1])
@@ -93,8 +93,8 @@ print(" ".join(fleet_pl[1]))
 print("output string of fleet is normal...")
 # get formatted print
 print("but formatted print is not. Debug it:")
-# print(f'{1: >2} {" ".join(fleet_pl[1]): >23s} {1: >17} {" ".join(shots_pl_1[0]) :>23}')  # example of formatted output
-# print(f'{"10": >2} {" ".join(fleet_pl[1]): >23s} {"10": >23s} {" ".join(shots_pl_1[0]) :>23}')  # example of formatted output
+# print(f'{1: >2} {" ".join(fleet_pl[1]): >23s} {1: >17} {" ".join(shots_pl[0]) :>23}')  # example of formatted output
+# print(f'{"10": >2} {" ".join(fleet_pl[1]): >23s} {"10": >23s} {" ".join(shots_pl[0]) :>23}')  # example of formatted output
 ship_str_0 = '0 0 0 0 0 0 0 0 0 0'
 ship_str_1 = " ".join(['~', '~', '~', '\x1b[31mX\x1b[0m', '~', '~', '~', '~', '~', '~'])
 ship_str_2 = " ".join(['\x1b[33mo\x1b[0m', '0', '0', '0', '0', '0', '0', '0', '0', '0'])

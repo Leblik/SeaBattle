@@ -13,8 +13,8 @@
 # from all_func import print_fields, xy_random, shots_func, gameover
 from all_func import *
 
-print("\n  Sea Battle Game \n ver.0.3"
-      "\nTo make shot input coordinates of Computer fleet (X Y), range from 1 to 10, and then tap Enter."
+print("\n  Sea Battle Game \n ver.0.4"
+      "\nTo make a shot input coordinates of Computer fleet (X Y), range from 1 to 10, and then tap Enter."
       "\nFor exit input 'q' or 'n'.")
 # Make fields of fleets for Player 1 and Computer.
 # Ships in every fleet: x5 - 1, x4 - 1, x3 - 1, x2 - 2, x1 - 2

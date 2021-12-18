@@ -12,7 +12,6 @@ def print_fields(fleet_1_name, fleet_2_name, fleet_1, fleet_2, score_count_1, sc
     print("    X", x_axis, " " * 16, x_axis)  # print x_axis
     print("       ", fleet_1_name + " score:", score_count_1, " "*23 + fleet_2_name + " score:", score_count_2)
     print("-" * 70)
-    # TODO: make print with format
 
 
 # Make fields of shots for player 1 and player 2.

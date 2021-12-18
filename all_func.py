@@ -22,7 +22,7 @@ def print_fields(fleet_1_name, fleet_2_name, fleet_1, fleet_2, score_count_1, sc
 # - ["".format(val)] and f'{val:form}';
 # - colored strings. Var 1.
 # + debug tab after shot in print_fields_2 func
-def print_fields_2(fleet_1_name, fleet_2_name, fleet_1, fleet_2, score_count_1, score_count_2):
+def print_fields_2(fleet_1_name, fleet_2_name, fleet_1, fleet_2, score_count_1, score_count_2, turn_count_1, turn_count_2):
     axis = list(range(1, 11))  # get range of axis
     print("\n"+f'{Fore.CYAN}{"Y": <5} {fleet_1_name + " fleet":>19}',
                f'{"Y":>17} {fleet_2_name + " fleet":>22s}{Style.RESET_ALL}')
@@ -33,8 +33,9 @@ def print_fields_2(fleet_1_name, fleet_2_name, fleet_1, fleet_2, score_count_1, 
               ' ' * 15,
               f'{Fore.CYAN}{y: <5}{Fore.RESET}{ship_str_2:<19}')  # ver 5 - print fields
     x_axis = " ".join([str(x) for x in axis])  # get X - axis
-    score_res_1 = fleet_1_name + " score: " + str(score_count_1)
-    score_res_2 = fleet_2_name + " score: " + str(score_count_2)
+    score_res_1 = '{} score: {} turn: {}'.format(fleet_1_name, str(score_count_1), str(turn_count_1))
+    score_res_2 = '{} score: {} turn: {}'.format(fleet_2_name, str(score_count_2), str(turn_count_2))
+    # score_res_2 = fleet_2_name + " score: " + str(score_count_2)
     print("\n" + Fore.CYAN+'{:>4}{:>22}{:>19}{:>22}'.format("X", x_axis, "X", x_axis) + Fore.RESET)  # print x_axis
     print(Fore.YELLOW + "{:<22}{:>45}".format(score_res_1, score_res_2) + Fore.RESET)  # print scores
     print("-" * 70)
@@ -85,12 +86,13 @@ def shots_func(x, y, shots_field, fleet_target, name_who_turn, name_target, turn
             shots_field[y][x] = 'o'  # not colored o
             turn_shoter = False  # next Player(Computer) turn
     else:
-        print("Повтор координат. Введите новые.")
+        print("Repeat coordinates. Enter new.")
     print("debug in shot_func:", turn_shoter, turn_count, score_count)  # debug
     return [turn_shoter, turn_count, score_count]  # return turn_pl/comp flag , turn counter and score counter
 
 
-# Function shots_func_2 get shots from input coordinates Player or Computer. With a colored chars by ANSI "colorama" module.
+# Function shots_func_2 get shots from input coordinates Player or Computer.
+# With a colored chars by ANSI "colorama" module.
 # TODO: - debug tab after shot in shots_func_2 func
 def shots_func_2(x, y, shots_field, fleet_target, name_who_turn, name_target, turn_count, score_count, turn_shoter):
     if shots_field[y][x] == '~':  # check repeat of coordinates Player shot
@@ -111,7 +113,7 @@ def shots_func_2(x, y, shots_field, fleet_target, name_who_turn, name_target, tu
             shots_field[y][x] = '\x1b[1;34;48m' + 'o' + '\x1b[0m'  # colored o
             turn_shoter = False  # next Player(Computer) turn
     else:
-        print("Повтор координат. Введите новые.")
+        print("Repeat coordinates. Enter new.")
     print("debug in shot_func:", turn_shoter, turn_count, score_count)  # debug
     return [turn_shoter, turn_count, score_count]  # return turn_pl/comp flag , turn counter and score counter
 
@@ -120,7 +122,8 @@ def shots_func_2(x, y, shots_field, fleet_target, name_who_turn, name_target, tu
 # add colored char "X" & "o" in shots_func
 # debug tab after shot in shots_func_3 func
 def shots_func_3(x, y, shots_field, fleet_target, name_who_turn, name_target, turn_count, score_count, turn_shoter):
-    if shots_field[y][x] == Fore.BLUE + '~' + Fore.RESET:  # check repeat of coordinates Player shot
+    if shots_field[y][x] == Fore.BLUE + '~' + Fore.RESET or shots_field[y][x] == Fore.GREEN + 'A' + Fore.RESET:  #
+        # check repeat of coordinates Player shot
         playsound(sys.path[1] + '\\sound\\rocket_1.mp3')  # playing rocket sound
         turn_count += 1  # counter of turns +1
         print(name_who_turn + " turns:", turn_count)  # debug
@@ -138,8 +141,8 @@ def shots_func_3(x, y, shots_field, fleet_target, name_who_turn, name_target, tu
             shots_field[y][x] = f"{Fore.YELLOW}o{Style.RESET_ALL}"  # colored o
             turn_shoter = False  # next Player(Computer) turn
     else:
-        print("Повтор координат. Введите новые.")
-    print("debug in shot_func:", turn_shoter, turn_count, score_count)  # debug
+        print("Repeat coordinates. Enter new.")
+    # print("debug in shot_func:", turn_shoter, turn_count, score_count)  # debug
     return [turn_shoter, turn_count, score_count]  # return turn_pl/comp flag , turn counter and score counter
 
 # Function "gameover" check scores and return flag for end of game

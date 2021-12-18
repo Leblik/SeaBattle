@@ -4,6 +4,8 @@ from all_func import *
 # import required module
 # import sys
 # from playsound import playsound
+# from sea_battle import shots_pl
+
 print("\nSAMPLES")
 # Play sounds ____________________________________________________________________________
 print("Project folder is", sys.path[1])  # Print current folder
@@ -95,35 +97,47 @@ fleet_pl_2 = [[str(i) for i in row] for row in fleet_pl_2]
 shots_pl_1 = [['~' for i in range(10)] for row in range(10)]
 shots_comp = [['~' for i in range(10)] for row in range(10)]
 
+# shots_comp_2 = [['A' for i in row if i == "1"] or [Fore.BLUE + '~' + Fore.RESET for i in row if i == "0"] for row in fleet_pl]  # make visible field of player fleet
+# shots_comp_2 = [['A' for i in row if i == "1" or Fore.BLUE + '~' + Fore.RESET for i in row if i == "0"] for row in fleet_pl]  # make visible field of player fleet
+
+for i in range(10):
+    for j in range(10):
+        if fleet_pl[i][j] == "1":
+            shots_comp[i][j] = Back.CYAN + 'A' + Back.RESET
+        elif fleet_pl[i][j] == "0":
+            shots_comp[i][j] = Fore.BLUE + '~' + Fore.RESET
+
 # scores
 score_pl = 0
 score_comp = 0
 
 
+print_fields_2("fleet_Player_visible", "fleet_Player_num", shots_comp, shots_pl_1, score_pl, score_comp)  # debug
+
 # colored print
-print('\x1b[1;34;48m'+'Y X'+'\x1b[0m')
-print('\033[1;36;48m'+'Y X'+'\033[0m')
-print("%2s%22s" % (10, 2356363463463))
-
-# colored strings by "colorama" module
-print(Fore.RED + 'some red text')
-print(Back.GREEN + 'and with a green background' + Style.RESET_ALL)
-print(f'{Fore.BLUE}and some green text{Style.RESET_ALL}')
-
-# colored field element
-print("Colored shots_pl[4][1] = X (RED) & fleet_pl[1][2] = o (YELLOW)")
-shots_pl_1[0][3] = f"{Fore.RED}X{Style.RESET_ALL}"
-fleet_pl[1][0] = f"{Fore.YELLOW}o{Style.RESET_ALL}"
-print(shots_pl_1[0][3], fleet_pl[1][0])
-
-# Formatted output print in table
-print("Formatted print:")
-print('%2d%23s%17d%25s' % (0, ' '.join(shots_pl_1[0]), 1, " ".join(fleet_pl[1])))
-print(f'{1: >2}{" ".join(shots_pl_1[0]): >32s}{1: >17} {" ".join(fleet_pl[1]) :>31}')  # example of formatted output
-print(f'{"10": >2}{" ".join(shots_pl_1[0]): >32s}{"10": >17s} {" ".join(fleet_pl[1]) :>31}')  # example of formatted output
-
-print("print_fields_2")  # debug
-print_fields_2("fleet_1_name", "fleet_2_name", fleet_pl, shots_pl_1, score_pl, score_comp)  # debug
+# print('\x1b[1;34;48m'+'Y X'+'\x1b[0m')
+# print('\033[1;36;48m'+'Y X'+'\033[0m')
+# print("%2s%22s" % (10, 2356363463463))
+#
+# # colored strings by "colorama" module
+# print(Fore.RED + 'some red text')
+# print(Back.GREEN + 'and with a green background' + Style.RESET_ALL)
+# print(f'{Fore.BLUE}and some green text{Style.RESET_ALL}')
+#
+# # colored field element
+# print("Colored shots_pl[4][1] = X (RED) & fleet_pl[1][2] = o (YELLOW)")
+# shots_pl_1[0][3] = f"{Fore.RED}X{Style.RESET_ALL}"
+# fleet_pl[1][0] = f"{Fore.YELLOW}o{Style.RESET_ALL}"
+# print(shots_pl_1[0][3], fleet_pl[1][0])
+#
+# # Formatted output print in table
+# print("Formatted print:")
+# print('%2d%23s%17d%25s' % (0, ' '.join(shots_pl_1[0]), 1, " ".join(fleet_pl[1])))
+# print(f'{1: >2}{" ".join(shots_pl_1[0]): >32s}{1: >17} {" ".join(fleet_pl[1]) :>31}')  # example of formatted output
+# print(f'{"10": >2}{" ".join(shots_pl_1[0]): >32s}{"10": >17s} {" ".join(fleet_pl[1]) :>31}')  # example of formatted output
+#
+# print("print_fields_2")  # debug
+# print_fields_2("fleet_1_name", "fleet_2_name", fleet_pl, shots_pl_1, score_pl, score_comp)  # debug
 
 
 # # Function print_fleets

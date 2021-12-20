@@ -29,9 +29,10 @@ ver 0.4 :
  - make format output like table in "print_fields_2" func
  - add colored of shot_field
  - add colored char "X" & "o" in shots_func, with debug
- + change elements in Computer shots field "shots_comp":  [~ ~ ~ ~] -> [A A ~ ~]
+ - change elements in Computer shots field "shots_comp":  [~ ~ ~ ~] -> [A A ~ ~]
 
 ver 0.5 :
+ + add debug for false format of input coordinates
 TODO:
  - compile Project "SeaBattle"
 

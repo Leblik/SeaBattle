@@ -1,7 +1,7 @@
 # Sea Battle Game
 # Made by Leblik
 #
-# Beta version 0.4 of table game Sea Buttle.
+# Beta version 0.5 of table game Sea Buttle.
 #
 # Поле игрока 1 и игрока 2 заданы изначально (10 x 10 клеток), пока что не меняются.
 # В этой версии проверить механику выстрелов, отображения, записи и
@@ -63,54 +63,75 @@ for i in range(10):
 run = True
 turn_pl = True  # Player turns first
 turn_comp = False  # Computer turns if Player miss
+# input_player_flag = True
+player_shot_flag = False
 # add turns counters for Player and Computer
 num_turn_pl = 0
 num_turn_comp = 0
 # add score counters - GAMEOVER condition
 score_pl = 0
 score_comp = 0
-
-print_fields_2("Player", "Computer", shots_comp, shots_pl, score_pl, score_comp, num_turn_pl, num_turn_comp)  # show Players fleet and shots fields
+# show Players fleet and shots fields
+print_fields_2("Player", "Computer", shots_comp, shots_pl, score_pl, score_comp, num_turn_pl, num_turn_comp)
 
 while run:
 
     # Player turn
     while turn_pl and run:
-        # shot player - input coordinates
-        shot = input("\n Enter coordinate X Y (1-10) to make shot:")
 
-        if shot == 'n' or shot == 'q':  # quit the game
-            print("\n", " " * 16, "Exit the game")
-            turn_pl = False
-            run = False
-            # exit()
-            break
-        elif shot == '':  # debug cheat: if Player enter null string -> turn go to the Computer
-            turn_pl = False
-            turn_comp = True
-        elif shot == 'win':  # debug cheat: if Player enter 'win' -> Player WIN! GAMEOVER
-            score_pl = 18
-            print("Hey! You dirty little cheater =)")
-            run = gameover(score_pl, score_comp)
-        else:
-            xy_pl = [int(i) for i in shot.split()]
-            x, y = xy_pl
-            x, y = x - 1, y - 1  # correct coordinate from human to machine, coze list[0, 1, 2 ...]
+        # Player input coordinates
+        # + add debug for false format of input coordinates
+        player_shot_flag = False
+        try:
+            # input string of coordinates X Y
+            shot_str = input("\n Enter coordinate X & Y (1-10) to make shot_str:")
 
-        if turn_pl == False and run == True:
-            turn_comp = True
+            if shot_str == 'n' or shot_str == 'q':  # Exit/quit the game code
+                # print(shot_str)  # debug
+                print("\n", " " * 16, "Exit the game")
+                turn_pl = False
+                run = False
+                    # exit()
+                break
+            elif shot_str == 'comp':  # debug cheat: if Player enter 'comp' -> turn go to the Computer
+                # print(shot_str)  # debug
+                turn_pl = False
+                turn_comp = True
+                break
+            elif shot_str == 'win':  # debug cheat: if Player enter 'win' -> Player WIN! GAMEOVER
+                # print(shot_str)  # debug
+                score_pl = 18
+                print("Hey! You dirty little cheater =)")
+                # break
+            else:
+                xy_pl = [int(i) for i in shot_str.split()]  # get int num from shot_str
+                if set(xy_pl) < set(range(11)):  # check x, y in range(10)
+                    player_shot_flag = True  #
+                    x, y = xy_pl
+                    x, y = x - 1, y - 1
+                    # print("X & Y <= 10", x + 1, y + 1)  # debug
+                else:
+                    print("ERROR. Enter right coordinates 0-10")
+            # break
+        except:
+            print("ERROR. Enter right coordinates")
 
         # Player get shot
-        player_shot = shots_func_3(x, y, shots_pl, fleet_comp, "Player", "Computer", num_turn_pl, score_pl, turn_pl)
-        # print(x, y, "Player -> Computer", player_shot)  # debug
-        turn_pl, num_turn_pl, score_pl = player_shot  # return result values of Player shot
-        # Output results of shot
-        print_fields_2("Player", "Computer", shots_comp, shots_pl, score_pl, score_comp, num_turn_pl, num_turn_comp)  # show Players fleet and shots fields
+        while player_shot_flag:
+            player_shot = shots_func_3(x, y, shots_pl, fleet_comp, "Player", "Computer", num_turn_pl, score_pl, turn_pl)
+            # print(x, y, "Player -> Computer", player_shot)  # debug
+            turn_pl, num_turn_pl, score_pl = player_shot  # return result values of Player shot
+
+            # Output results of shot
+            print_fields_2("Player", "Computer", shots_comp, shots_pl, score_pl, score_comp, num_turn_pl,
+                           num_turn_comp)  # show Players fleet and shots fields
+            break
 
         run = gameover(score_pl, score_comp)  # check scores for GAMEOVER func
 
         if turn_pl == False and run == True:
             turn_comp = True
+            # player_shot_flag = False
 
     # Computer turn
     while turn_comp:

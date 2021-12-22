@@ -34,6 +34,7 @@ ver 0.4 :
 ver 0.5 :
  + add debug for false format of input coordinates
 TODO:
+ - make and add function for check current shot's coordinates in list-story of last shots before get current shot
  - compile Project "SeaBattle"
 
 ver 1.0 :

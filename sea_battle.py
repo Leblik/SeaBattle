@@ -105,7 +105,7 @@ while run:
                 # break
             else:
                 xy_pl = [int(i) for i in shot_str.split()]  # get int num from shot_str
-                if set(xy_pl) < set(range(11)):  # check x, y in range(10)
+                if set(xy_pl) < set(range(11)):  # check x, y in range 1-10
                     player_shot_flag = True  #
                     x, y = xy_pl
                     x, y = x - 1, y - 1

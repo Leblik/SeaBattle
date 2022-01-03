@@ -34,8 +34,9 @@ ver 0.4 :
 ver 0.5 :
  + add debug for false format of input coordinates
 TODO:
- - make and add function for check current shot's coordinates in list-story of last shots before get current shot
- - compile Project "SeaBattle"
+ + add check current shot's coordinates in list-story of last shots before get current shot.
+ - push up "shots_story" branch to "master"
+ - make new branch "exec" from master and compile Project "SeaBattle" to executable file SeaBattle.exe
 
 ver 1.0 :
  - change axis X to range(a b c ... j) and format of shot coordinate as: a5, b7, f2 ...

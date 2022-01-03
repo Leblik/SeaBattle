@@ -57,6 +57,7 @@ def shots_func_3(x, y, shots_field, fleet_target, name_who_turn, name_target, tu
             shots_field[y][x] = f"{Fore.YELLOW}o{Style.RESET_ALL}"  # colored o
             turn_shoter = False  # next Player(Computer) turn
     else:
+        # return
         print("Repeat coordinates. Enter new.")
     # print("debug in shot_func:", turn_shoter, turn_count, score_count)  # debug
     return [turn_shoter, turn_count, score_count]  # return turn_pl/comp flag , turn counter and score counter

@@ -13,7 +13,7 @@
 # from all_func import print_fields, xy_random, shots_func, gameover
 from all_func import *
 
-print("\n  Sea Battle Game \n ver.0.4"
+print("\n  Sea Battle Game \n ver.0.5"
       "\nTo make a shot input coordinates of Computer fleet (X Y), range from 1 to 10, and then tap Enter."
       "\nFor exit input 'q' or 'n'.")
 # Make fields of fleets for Player 1 and Computer.
@@ -57,7 +57,6 @@ for i in range(10):
         if fleet_pl[i][j] == "1":
             shots_comp[i][j] = Fore.GREEN + 'A' + Fore.RESET
 
-
 # GAME LOOP
 # start values
 run = True
@@ -71,6 +70,10 @@ num_turn_comp = 0
 # add score counters - GAMEOVER condition
 score_pl = 0
 score_comp = 0
+# add story lists of player and computer shots
+shots_story_pl = []
+shots_story_comp = []
+
 # show Players fleet and shots fields
 print_fields_2("Player", "Computer", shots_comp, shots_pl, score_pl, score_comp, num_turn_pl, num_turn_comp)
 
@@ -79,42 +82,62 @@ while run:
     # Player turn
     while turn_pl and run:
 
-        # Player input coordinates
-        # + add debug for false format of input coordinates
         player_shot_flag = False
-        try:
-            # input string of coordinates X Y
-            shot_str = input("\n Enter coordinate X & Y (1-10) to make shot_str:")
 
-            if shot_str == 'n' or shot_str == 'q':  # Exit/quit the game code
-                # print(shot_str)  # debug
-                print("\n", " " * 16, "Exit the game")
-                turn_pl = False
-                run = False
+        # Player input coordinates LOOP
+        # with ERROR check
+        while True:
+            # input string of coordinates X Y
+            shot_str = input("\n Enter coordinate X & Y (1-10) to make shot:")
+
+            try:
+                if shot_str == 'n' or shot_str == 'q':  # Exit/quit the game code
+                    # print(shot_str)  # debug
+                    print("\n", " " * 16, "Exit the game")
+                    turn_pl = False
+                    run = False
                     # exit()
-                break
-            elif shot_str == 'comp':  # debug cheat: if Player enter 'comp' -> turn go to the Computer
-                # print(shot_str)  # debug
-                turn_pl = False
-                turn_comp = True
-                break
-            elif shot_str == 'win':  # debug cheat: if Player enter 'win' -> Player WIN! GAMEOVER
-                # print(shot_str)  # debug
-                score_pl = 18
-                print("Hey! You dirty little cheater =)")
-                # break
-            else:
-                xy_pl = [int(i) for i in shot_str.split()]  # get int num from shot_str
-                if set(xy_pl) < set(range(11)):  # check x, y in range(10)
-                    player_shot_flag = True  #
-                    x, y = xy_pl
-                    x, y = x - 1, y - 1
-                    # print("X & Y <= 10", x + 1, y + 1)  # debug
+                    break
+                elif shot_str == 'comp':  # debug cheat: if Player enter 'comp' -> turn go to the Computer
+                    # print(shot_str)  # debug
+                    turn_pl = False
+                    turn_comp = True
+                    break
+                elif shot_str == 'win':  # debug cheat: if Player enter 'win' -> Player WIN! GAMEOVER
+                    # print(shot_str)  # debug
+                    score_pl = 18
+                    print("Hey! You dirty little cheater =)")
+                    break
+                # Check input ERRORs
+                # check for empty and space input
+                elif shot_str == '' or shot_str == ' ':
+                    print("Empty values. Enter coordinates from interval 1-10, please. Example: 7 3.")
+                # check for some nums and one ' ' in input
+                elif not set(shot_str) < (set([str(i) for i in range(10)]) | {' '}):
+                    print("Incorrect values. Enter only two number with space, please. Example: 2 1.")
+
                 else:
-                    print("ERROR. Enter right coordinates 0-10")
-            # break
-        except:
-            print("ERROR. Enter right coordinates")
+                    # check values is number in range 1-10
+                    if set([int(i) for i in shot_str.split()]) < set(range(1, 11)):
+                        xy_pl = [int(i) for i in shot_str.split()]  # get int num from shot_str
+                        # check for repeating of coordinates
+                        if xy_pl not in shots_story_pl:
+                            shots_story_pl.append(xy_pl)
+                            # agree shot and get X, Y from xy_pl list
+                            player_shot_flag = True
+                            x, y = xy_pl
+                            x, y = x - 1, y - 1
+                            # print("X & Y <= 10", x + 1, y + 1)  # debug
+                            break
+                        else:
+                            print("Repeating values. You already shot in this coordinates. Enter new, please.")
+                    else:
+                        print("Incorrect values. Enter only two number from interval 1-10, please. Example: 5 10.")
+                # break
+            # some other input errors
+            except:
+                print("Incorrect values. Enter only two number for coordinates, please. Example: 9 10.")
+
 
         # Player get shot
         while player_shot_flag:
@@ -123,10 +146,12 @@ while run:
             turn_pl, num_turn_pl, score_pl = player_shot  # return result values of Player shot
 
             # Output results of shot
+            print("Result:")
             print_fields_2("Player", "Computer", shots_comp, shots_pl, score_pl, score_comp, num_turn_pl,
                            num_turn_comp)  # show Players fleet and shots fields
             break
 
+        # player_shot_flag = False
         run = gameover(score_pl, score_comp)  # check scores for GAMEOVER func
 
         if turn_pl == False and run == True:
@@ -143,7 +168,10 @@ while run:
         # print(x, y, "Player -> Computer", comp_shot)  # debug
         turn_comp, num_turn_comp, score_comp = comp_shot  # return result values of Computer shot
 
-        print_fields_2("Player", "Computer", shots_comp, shots_pl, score_pl, score_comp, num_turn_pl, num_turn_comp)  # show Players fleet and shots fields
+        # Output results of shot
+        print("Result:")
+        print_fields_2("Player", "Computer", shots_comp, shots_pl, score_pl, score_comp, num_turn_pl,
+                       num_turn_comp)  # show Players fleet and shots fields
 
         run = gameover(score_pl, score_comp)  # check scores for GAMEOVER
 

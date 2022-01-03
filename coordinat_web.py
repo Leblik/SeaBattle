@@ -16,6 +16,15 @@ for elem in x_axis:
     print(elem, end=' ')
 print('\n')
 
-a = [str(i) for i in range(1,11)]
+a = [str(i) for i in range(1, 11)]
 for elem in a:
     print(elem, end=' ')
+print('\n')
+
+# Перебираем элементы списка распоковав их *
+x_axis = range(1, 11)
+print(*range(1, 11))
+print(*x_axis)
+
+a = [*range(1, 11)]
+print(a)

@@ -1,5 +1,5 @@
 # Algorithm for check last shots
-# TODO: + add code for check current shot's coordinates
+#  add code for check current shot's coordinates
 #  in list-story of last shots before get current shot
 
 # Example

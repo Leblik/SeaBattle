@@ -35,10 +35,13 @@ ver 0.5 :
  - add debug for false format of input coordinates
  - add check current shot's coordinates in list-story of last shots before get current shot.
  - push up "shots_story" branch to "master"
-TODO:
- - make new branch "exec" from master and compile Project "SeaBattle" to executable file SeaBattle.exe
+ + fix endgame and exitgame bug, when game get shot of comp after quit or endgame;
+ + make new branch "exec"  from master (complete)
+ and compile Project "SeaBattle" to executable file SeaBattle.exe (not complete).
+
 
 ver 1.0 :
+TODO:
  - change axis X to range(a b c ... j) and format of shot coordinate as: a5, b7, f2 ...
  - add ability that player can locate ships on the field as he wants
  - add some ship location maps of computer in file, and random upload they from it in start of the game

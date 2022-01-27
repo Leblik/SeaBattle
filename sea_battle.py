@@ -57,7 +57,7 @@ for i in range(10):
         if fleet_pl[i][j] == "1":
             shots_comp[i][j] = Fore.GREEN + 'A' + Fore.RESET
 
-# GAME LOOP
+
 # start values
 run = True
 turn_pl = True  # Player turns first
@@ -77,10 +77,13 @@ shots_story_comp = []
 # show Players fleet and shots fields
 print_fields_2("Player", "Computer", shots_comp, shots_pl, score_pl, score_comp, num_turn_pl, num_turn_comp)
 
+# GAME LOOP
 while run:
 
-    # Player turn
+    # Player turn LOOP
     while turn_pl and run:
+        # player_shot_flag = False
+        run = gameover(score_pl, score_comp)  # check scores for GAMEOVER func
 
         player_shot_flag = False
 
@@ -108,16 +111,15 @@ while run:
                     score_pl = 18
                     print("Hey! You dirty little cheater =)")
                     break
-                # Check input ERRORs
-                # check for empty and space input
+                # Check input ERRORS
+                # check that input is not empty and space
                 elif shot_str == '' or shot_str == ' ':
                     print("Empty values. Enter coordinates from interval 1-10, please. Example: 7 3.")
-                # check for some nums and one ' ' in input
+                # check for some nums and spaces ' ' in input
                 elif not set(shot_str) < (set([str(i) for i in range(10)]) | {' '}):
                     print("Incorrect values. Enter only two number with space, please. Example: 2 1.")
-
                 else:
-                    # check values is number in range 1-10
+                    # check that input values is number in range 1-10
                     if set([int(i) for i in shot_str.split()]) < set(range(1, 11)):
                         xy_pl = [int(i) for i in shot_str.split()]  # get int num from shot_str
                         # check for repeating of coordinates
@@ -151,14 +153,14 @@ while run:
                            num_turn_comp)  # show Players fleet and shots fields
             break
 
-        # player_shot_flag = False
-        run = gameover(score_pl, score_comp)  # check scores for GAMEOVER func
+        # # player_shot_flag = False
+        # run = gameover(score_pl, score_comp)  # check scores for GAMEOVER func
 
         if turn_pl == False and run == True:
             turn_comp = True
             # player_shot_flag = False
 
-    # Computer turn
+    # Computer turn LOOP
     while turn_comp:
         x, y = xy_random()  # Generate random x & y coordinates from "xy_random" function
         # print("\n Computer shot in x y = ", x + 1, y + 1)  # debug

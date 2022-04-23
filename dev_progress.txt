@@ -44,7 +44,8 @@ ver 1.0 :
 TODO:
  - change axis X to range(a b c ... j) and format of shot coordinate as: a5, b7, f2 ...
  - add ability that player can locate ships on the field as he wants
- - add some ship location maps of computer in file, and random upload they from it in start of the game
+ - add some ship location maps of computer in file, and random upload they from
+ it in start of the game
 
 ver 1.1 :
  - add ability of random locate computer and player ships

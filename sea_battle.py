@@ -81,8 +81,8 @@ print_fields_2("Player", "Computer", shots_comp, shots_pl, score_pl, score_comp,
 while run:
 
     # Player turn LOOP
-    while turn_pl and run:
-        # player_shot_flag = False
+    while turn_pl: #and run:
+
         run = gameover(score_pl, score_comp)  # check scores for GAMEOVER func
 
         player_shot_flag = False
@@ -153,15 +153,18 @@ while run:
                            num_turn_comp)  # show Players fleet and shots fields
             break
 
-        # # player_shot_flag = False
-        # run = gameover(score_pl, score_comp)  # check scores for GAMEOVER func
-
-        if turn_pl == False and run == True:
+        # if turn_pl == False and run == True:
+        if not turn_pl and run:
+            # print(turn_pl, run)  # debug
             turn_comp = True
-            # player_shot_flag = False
+
+
 
     # Computer turn LOOP
     while turn_comp:
+
+        run = gameover(score_pl, score_comp)  # check scores for GAMEOVER
+
         x, y = xy_random()  # Generate random x & y coordinates from "xy_random" function
         # print("\n Computer shot in x y = ", x + 1, y + 1)  # debug
 
@@ -174,8 +177,6 @@ while run:
         print("Result:")
         print_fields_2("Player", "Computer", shots_comp, shots_pl, score_pl, score_comp, num_turn_pl,
                        num_turn_comp)  # show Players fleet and shots fields
-
-        run = gameover(score_pl, score_comp)  # check scores for GAMEOVER
 
         if turn_comp == False and run == True:
             turn_pl = True
